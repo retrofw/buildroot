@@ -1,0 +1,22 @@
+diff -ru SDL_mixer-1.2.12.org/configure.in SDL_mixer-1.2.12/configure.in
+--- SDL_mixer-1.2.12.org/configure.in	2012-01-15 23:01:05.000000000 +0100
++++ SDL_mixer-1.2.12/configure.in	2014-07-03 05:25:44.761854572 +0200
+@@ -301,7 +301,7 @@
+         have_libmikmod=yes
+         AC_MSG_CHECKING([for libmikmod - version >= $libmikmod_ver])
+         AC_TRY_RUN([
+-#include "mikmod.h"
++#include "libmodplug/mikmod.h"
+ #include "stdio.h"
+ 
+ int main(int argc, char **argv)
+--- SDL_mixer-1.2.12.org/music_modplug.h	2012-01-15 20:01:05.000000000 -0200
++++ SDL_mixer-1.2.12/music_modplug.h	2019-02-15 19:30:47.985681787 -0200
+@@ -1,6 +1,6 @@
+ #ifdef MODPLUG_MUSIC
+ 
+-#include "modplug.h"
++#include "libmodplug/modplug.h"
+ #include "SDL_rwops.h"
+ #include "SDL_audio.h"
+ #include "SDL_mixer.h"
