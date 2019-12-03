@@ -1,0 +1,5 @@
+# From https://ftp.postgresql.org/pub/source/v10.7/postgresql-10.7.tar.bz2.sha256
+sha256	bfed1065380c1bba927bfe51f23168471373f26e3324cbad859269cc32733ede	postgresql-10.7.tar.bz2
+
+# License file, Locally calculated
+sha256	c4c86d683970b22b9fab53320ee1b3a30ef4e8223122b4fb6be53ea62ecee8b3	COPYRIGHT
