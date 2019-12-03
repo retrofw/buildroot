@@ -1,0 +1,48 @@
+# /etc/inittab
+#
+# Copyright (C) 2001 Erik Andersen <andersen@codepoet.org>
+#
+# Note: BusyBox init doesn't support runlevels.  The runlevels field is
+# completely ignored by BusyBox init. If you want runlevels, use
+# sysvinit.
+#
+# Format for each entry: <id>:<runlevels>:<action>:<process>
+#
+# id        == tty to run on, or empty for /dev/console
+# runlevels == ignored
+# action    == one of sysinit, respawn, askfirst, wait, and once
+# process   == program to run
+
+# Startup the system
+::sysinit:/bin/mount -t proc proc /proc
+::sysinit:/bin/mount -t sysfs sysfs /sys
+::sysinit:/bin/mount -o size=64k,mode=0755 -t tmpfs tmpfs /dev
+::sysinit:/bin/mkdir -p /dev/pts
+::sysinit:/bin/ln -s /tmp /dev/shm
+::sysinit:/bin/mount -t tmpfs tmpfs /media
+::sysinit:/bin/mount -t tmpfs tmpfs /tmp
+::sysinit:/bin/mknod /dev/tcsm c 238 73
+::sysinit:/bin/mknod -m 0666 /dev/null c 1 3
+::sysinit:/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
+::sysinit:/sbin/mdev -s
+
+# now run any rc scripts
+::sysinit:/bin/hostname -F /etc/hostname
+::sysinit:/usr/sbin/inetd
+::sysinit:/etc/init.d/rcS
+::sysinit:/sbin/swapon /dev/mmcblk0p2
+::sysinit:/bin/mount -a
+
+# Put a getty on the serial port
+::respawn:/sbin/getty -L console 0 vt100 # GENERIC_SERIAL
+#tty0::respawn:/usr/bin/retrofw start
+console::respawn:/usr/bin/retrofw start
+
+# Stuff to do for the 3-finger salute
+#::ctrlaltdel:/sbin/reboot
+
+# Stuff to do before rebooting
+console::shutdown:/usr/bin/retrofw stop
+::shutdown:/etc/init.d/rcK
+::shutdown:/sbin/swapoff -a
+::shutdown:/bin/umount -a -r
