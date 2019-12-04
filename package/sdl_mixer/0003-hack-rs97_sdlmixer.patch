@@ -1,0 +1,53 @@
+diff -Nur a/mixer.c b/mixer.c
+--- a/mixer.c
++++ b/mixer.c
+@@ -420,6 +420,10 @@
+ 		}
+ 	}
+
++	if (format == AUDIO_S16 || format == AUDIO_S16MSB || format == AUDIO_S16SYS)
++		format = AUDIO_S16LSB;
++	Mix_Init(MIX_INIT_OGG|MIX_INIT_MOD);
++
+ 	/* Set the desired format and frequency */
+ 	desired.freq = frequency;
+ 	desired.format = format;
+@@ -476,6 +480,9 @@
+ 
+ 	audio_opened = 1;
+ 	SDL_PauseAudio(0);
++
++	Mix_Init(MIX_INIT_OGG|MIX_INIT_MOD);
++
+ 	return(0);
+ }
+
+@@ -551,6 +551,16 @@
+ 	return(audio_opened);
+ }
+ 
++Mix_Chunk *Mix_LoadWAV(const char *file) {
++  int retry = 50;
++  Mix_Chunk *wav = NULL;
++  do {
++    wav = Mix_LoadWAV_RW(SDL_RWFromFile(file, "rb"), 0);
++    if (wav != NULL) break;
++    SDL_Delay(50);
++  } while(retry--);
++  return wav;
++}
+ 
+ /*
+  * !!! FIXME: Ideally, we want a Mix_LoadSample_RW(), which will handle the
+
+diff -Naur a/SDL_mixer.h b/SDL_mixer.h
+--- a/SDL_mixer.h
++++ b/SDL_mixer.h
+@@ -147,7 +147,7 @@
+ 
+ /* Load a wave file or a music (.mod .s3m .it .xm) file */
+ extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV_RW(SDL_RWops *src, int freesrc);
+-#define Mix_LoadWAV(file)	Mix_LoadWAV_RW(SDL_RWFromFile(file, "rb"), 1)
++extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV(const char *file);
+ extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUS(const char *file);
+ 

@@ -1,0 +1,11 @@
+--- sdl-1.2.15/src/video/SDL_video.c~	2019-06-10 22:31:51.488016335 -0300
++++ sdl-1.2.15/src/video/SDL_video.c	2019-06-10 22:32:19.701840615 -0300
+@@ -620,7 +620,7 @@ SDL_Surface * SDL_SetVideoMode (int widt
+ 	/* Get a good video mode, the closest one possible */
+ 	video_w = width;
+ 	video_h = height;
+-	video_bpp = bpp;
++	video_bpp = 16;
+ 	if ( ! SDL_GetVideoMode(&video_w, &video_h, &video_bpp, flags) ) {
+ 		return(NULL);
+ 	}

@@ -1,2 +1,3 @@
 # Locally calculated after checking pgp signature
-sha256	858b589c22297cacdf437f3baff6f04b333087521ab274f7ab677cb8c6bb78e4  parted-3.2.tar.xz
+sha256	858b589c22297cacdf437f3baff6f04b333087521ab274f7ab677cb8c6bb78e4	parted-3.2.tar.xz
+sha256	508ff75591b9c8cc9d06f1e0b1db1a082a4b0c1b9d4efaac48b4ca46370d9073	parted-2.4.tar.xz

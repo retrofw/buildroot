@@ -1,0 +1,52 @@
+--- fatresize-1.0.2/fatresize.c.orig	2019-10-13 00:39:04.380897547 -0300
++++ fatresize-1.0.2/fatresize.c	2019-10-13 01:14:50.330698292 -0300
+@@ -217,7 +217,7 @@ fatresize_handler(PedException *ex)
+ static int
+ snap(PedSector* sector, PedSector new_sector, PedGeometry* range)
+ {
+-    PED_ASSERT(ped_geometry_test_sector_inside (range, *sector), return 0);
++    PED_ASSERT(ped_geometry_test_sector_inside (range, *sector));
+     if (!ped_geometry_test_sector_inside(range, new_sector))
+ 	return 0;
+ 
+@@ -281,13 +281,13 @@ snap_to_boundaries (PedGeometry* new_geo
+ 			  end_part->geom.end, end_part->geom.start - 1, -1);
+ 	}
+ 
+-	PED_ASSERT (start <= end, return);
++	PED_ASSERT (start <= end);
+ 	ped_geometry_set (new_geom, start, end - start + 1);
+ }
+ 
+ /* This functions constructs a constraint from the following information:
+  * 	start, is_start_exact, end, is_end_exact.
+- * 	
++ *
+  * If is_start_exact == 1, then the constraint requires start be as given in
+  * "start".  Otherwise, the constraint does not set any requirements on the
+  * start.
+@@ -320,11 +320,11 @@ partition_warn_busy(PedPartition* part)
+ 			("Partition %s is being used.  You must unmount it "
+ 			 "before you modify it with Parted."),
+ 			path);
+-	ped_free(path);
++	free(path);
+ 	return 0;
+     }
+ 
+-    ped_free(path);
++    free(path);
+     return 1;
+ }
+ 
+@@ -507,8 +507,8 @@ main(int argc, char **argv)
+     }
+     else if (!ped_unit_parse(def_str, dev, &end, &range_end))
+ 	return 1;
+-    ped_free(old_str);
+-    ped_free(def_str);
++    free(old_str);
++    free(def_str);
+ 
+     printd(3, "ped_geometry_duplicate()\n");
+     old_geom = ped_geometry_duplicate(&part->geom);

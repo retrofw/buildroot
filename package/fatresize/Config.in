@@ -1,0 +1,11 @@
+config BR2_PACKAGE_FATRESIZE
+	bool "fatresize"
+	select BR2_PACKAGE_UTIL_LINUX
+	select BR2_PACKAGE_PARTED
+	help
+	  parted, the GNU partition resizing program
+
+	  http://www.gnu.org/software/parted/
+
+comment "parted needs a toolchain w/ wchar"
+	depends on !BR2_USE_WCHAR

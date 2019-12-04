@@ -1,0 +1,43 @@
+diff -up SDL_image-1.2.12/IMG_png.c~ SDL_image-1.2.12/IMG_png.c
+--- SDL_image-1.2.12/IMG_png.c~	2012-01-21 02:51:33.000000000 +0100
++++ SDL_image-1.2.12/IMG_png.c	2015-12-26 12:39:21.150828413 +0100
+@@ -95,6 +95,7 @@ static struct {
+ 	void (*png_set_packing) (png_structp png_ptr);
+ 	void (*png_set_read_fn) (png_structp png_ptr, png_voidp io_ptr, png_rw_ptr read_data_fn);
+ 	void (*png_set_strip_16) (png_structp png_ptr);
++	int (*png_set_interlace_handling) (png_structp png_ptr);
+ 	int (*png_sig_cmp) (png_bytep sig, png_size_t start, png_size_t num_to_check);
+ #ifndef LIBPNG_VERSION_12
+ 	jmp_buf* (*png_set_longjmp_fn) (png_structp, png_longjmp_ptr, size_t);
+@@ -228,6 +229,13 @@ int IMG_InitPNG()
+ 			SDL_UnloadObject(lib.handle);
+ 			return -1;
+ 		}
++		lib.png_set_interlace_handling =
++			(void (*) (png_structp))
++			SDL_LoadFunction(lib.handle, "png_set_interlace_handling");
++		if ( lib.png_set_interlace_handling == NULL ) {
++			SDL_UnloadObject(lib.handle);
++			return -1;
++		}
+ 		lib.png_sig_cmp =
+ 			(int (*) (png_bytep, png_size_t, png_size_t))
+ 			SDL_LoadFunction(lib.handle, "png_sig_cmp");
+@@ -280,6 +288,7 @@ int IMG_InitPNG()
+ 		lib.png_set_packing = png_set_packing;
+ 		lib.png_set_read_fn = png_set_read_fn;
+ 		lib.png_set_strip_16 = png_set_strip_16;
++		lib.png_set_interlace_handling = png_set_interlace_handling;
+ 		lib.png_sig_cmp = png_sig_cmp;
+ #ifndef LIBPNG_VERSION_12
+ 		lib.png_set_longjmp_fn = png_set_longjmp_fn;
+@@ -404,6 +413,9 @@ SDL_Surface *IMG_LoadPNG_RW(SDL_RWops *s
+ 	/* tell libpng to strip 16 bit/color files down to 8 bits/color */
+ 	lib.png_set_strip_16(png_ptr) ;
+ 
++	/* tell libpng to de-interlace (if the image is interlaced) */
++	lib.png_set_interlace_handling(png_ptr) ;
++
+ 	/* Extract multiple pixels with bit depths of 1, 2, and 4 from a single
+ 	 * byte into separate bytes (useful for paletted and grayscale images).
+ 	 */
