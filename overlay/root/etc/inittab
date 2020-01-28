@@ -36,7 +36,6 @@
 
 # Put a getty on the serial port
 ::respawn:/sbin/getty -L console 0 vt100 # GENERIC_SERIAL
-#tty0::respawn:/usr/bin/retrofw start
 console::respawn:/usr/bin/retrofw start
 
 # Stuff to do for the 3-finger salute

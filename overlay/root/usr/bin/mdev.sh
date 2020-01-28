@@ -12,7 +12,9 @@ mdev_umount()
 		umount -fl "${mnt}/$1";
 	fi
 
-	[ -d "${mnt}/$1" ] && rmdir "${mnt}/$1"
+	if [ -d "${mnt}/$1" ]; then
+		rmdir "${mnt}/$1";
+	fi
 }
 
 mdev_mount()
