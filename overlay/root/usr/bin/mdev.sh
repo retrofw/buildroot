@@ -38,7 +38,7 @@ mdev_mount()
 case "${ACTION}" in
 add|"")
 	mdev_umount ${MDEV}
-	mdev_mount ${MDEV} &
+	mdev_mount ${MDEV}
 	;;
 remove)
 	mdev_umount ${MDEV}
