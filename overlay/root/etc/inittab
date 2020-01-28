@@ -28,10 +28,11 @@
 
 # now run any rc scripts
 ::sysinit:/bin/hostname -F /etc/hostname
-::sysinit:/usr/sbin/inetd
 ::sysinit:/etc/init.d/rcS
 ::sysinit:/sbin/swapon /dev/mmcblk0p2
 ::sysinit:/bin/mount -a
+
+::respawn:/usr/sbin/inetd -f
 
 # Put a getty on the serial port
 ::respawn:/sbin/getty -L console 0 vt100 # GENERIC_SERIAL
