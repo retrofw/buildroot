@@ -9,7 +9,7 @@ ln -sf mmcblk$(( $(readlink -f /dev/root | head -c -3 |  tail -c 1) ^ 1 )) /dev/
 mdev_umount()
 {
 	if grep -qs "${mnt}/$1 " /proc/mounts ; then
-		umount "${mnt}/$1";
+		umount -fl "${mnt}/$1";
 	fi
 
 	[ -d "${mnt}/$1" ] && rmdir "${mnt}/$1"
