@@ -27,12 +27,9 @@ mdev_mount()
 	mkdir -p "${mnt}/$1" || exit 1
 
 	if ! mount -t auto -o noatime,check=r,shortname=lower,utf8=true "/dev/$1" "${mnt}/$1"; then
-		mount.exfat -o noatime,nls=utf8 "/dev/$1" "${mnt}/$1"; e=$?
-		if [ $e -gt 0 ]; then
-			if ! mount -t auto -o noatime "/dev/$1" "${mnt}/$1"; then
-				rmdir "${mnt}/$1"
-				exit 1
-			fi
+		if ! mount -t auto -o noatime "/dev/$1" "${mnt}/$1"; then
+			rmdir "${mnt}/$1"
+			exit 1
 		fi
 	fi
 }
