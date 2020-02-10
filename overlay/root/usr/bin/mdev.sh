@@ -10,9 +10,6 @@ mdev_umount()
 {
 	if grep -qs "${mnt}/$1 " /proc/mounts ; then
 		umount -fl "${mnt}/$1";
-	fi
-
-	if [ -d "${mnt}/$1" ]; then
 		rmdir "${mnt}/$1";
 	fi
 }
