@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-SDL_TTF_VERSION = 2.0.11
-SDL_TTF_SOURCE = SDL_ttf-$(SDL_TTF_VERSION).tar.gz
-SDL_TTF_SITE = http://www.libsdl.org/projects/SDL_ttf/release
+SDL_TTF_VERSION = 7dbd7cd826d6
+SDL_TTF_SOURCE = $(SDL_TTF_VERSION).tar.gz
+SDL_TTF_SITE = https://hg.libsdl.org/SDL_ttf/archive
 SDL_TTF_LICENSE = Zlib
 SDL_TTF_LICENSE_FILES = COPYING
 
