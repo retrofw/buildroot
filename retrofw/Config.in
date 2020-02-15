@@ -1,0 +1,5 @@
+menu "RetroFW packages"
+	source "$BR2_EXTERNAL_RETROFW_PATH/package/libini/Config.in"
+	source "$BR2_EXTERNAL_RETROFW_PATH/package/libopk/Config.in"
+	source "$BR2_EXTERNAL_RETROFW_PATH/package/libmikmod/Config.in"
+endmenu
