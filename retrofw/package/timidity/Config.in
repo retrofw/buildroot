@@ -1,0 +1,5 @@
+config BR2_PACKAGE_TIMIDITY
+        bool "timidity"
+        default y
+        help
+          https://github.com/retrofw/timidity
