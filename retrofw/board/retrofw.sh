@@ -1,7 +1,7 @@
 #!/bin/sh
 TARGET=$1
 
-mkdir -p "${TARGET}"/home/retrofw
+mkdir -p "${TARGET}"/home/retrofw "${TARGET}"/boot
 
 rm -rf \
 	"${TARGET}"/lost+found \
