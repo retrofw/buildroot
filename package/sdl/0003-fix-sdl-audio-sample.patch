@@ -1,0 +1,22 @@
+--- a/src/audio/SDL_audio.c
++++ b/src/audio/SDL_audio.c
+@@ -462,13 +462,13 @@
+ 	}
+ 	if ( desired->samples == 0 ) {
+ 		/* Pick a default of ~46 ms at desired frequency */
+-		int samples = (desired->freq / 1000) * 46;
+-		int power2 = 1;
+-		while ( power2 < samples ) {
+-			power2 *= 2;
+-		}
+-		desired->samples = power2;
++		desired->samples = (desired->freq / 1000) * 46;
+ 	}
++	int power2 = 1;
++	while (power2 < desired->samples) {
++		power2 *= 2;
++	}
++	desired->samples = power2;
+ 	if ( desired->callback == NULL ) {
+ 		SDL_SetError("SDL_OpenAudio() passed a NULL callback");
+ 		return(-1);
