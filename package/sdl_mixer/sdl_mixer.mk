@@ -41,10 +41,13 @@ else
 SDL_MIXER_CONF_OPTS += --disable-music-mod-modplug
 endif
 
-# prefer tremor over libvorbis
+# Prefer tremor over libvorbis
 ifeq ($(BR2_PACKAGE_TREMOR),y)
 SDL_MIXER_CONF_OPTS += --enable-music-ogg-tremor
 SDL_MIXER_DEPENDENCIES += tremor
+else ifeq ($(BR2_PACKAGE_LIBVORBIS),y)
+SDL_MIXER_CONF_OPTS += --enable-music-ogg
+SDL_MIXER_DEPENDENCIES += libvorbis
 else
 SDL_MIXER_CONF_OPTS += --disable-music-ogg
 endif
