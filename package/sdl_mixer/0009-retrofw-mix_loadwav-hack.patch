@@ -1,27 +1,6 @@
 diff -Nur a/mixer.c b/mixer.c
 --- a/mixer.c
 +++ b/mixer.c
-@@ -420,6 +420,10 @@
- 		}
- 	}
-
-+	if (format == AUDIO_S16 || format == AUDIO_S16MSB || format == AUDIO_S16SYS)
-+		format = AUDIO_S16LSB;
-+	Mix_Init(MIX_INIT_OGG|MIX_INIT_MOD);
-+
- 	/* Set the desired format and frequency */
- 	desired.freq = frequency;
- 	desired.format = format;
-@@ -476,6 +480,9 @@
- 
- 	audio_opened = 1;
- 	SDL_PauseAudio(0);
-+
-+	Mix_Init(MIX_INIT_OGG|MIX_INIT_MOD);
-+
- 	return(0);
- }
-
 @@ -551,6 +551,16 @@
  	return(audio_opened);
  }
