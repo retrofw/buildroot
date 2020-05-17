@@ -30,13 +30,11 @@ endif
 ifeq ($(BR2_PACKAGE_LIBMIKMOD),y)
 SDL_MIXER_CONF_OPTS += --enable-music-mod
 SDL_MIXER_DEPENDENCIES += libmikmod
-else
-ifeq ($(BR2_PACKAGE_LIBMODPLUG),y)
+else ifeq ($(BR2_PACKAGE_LIBMODPLUG),y)
 SDL_MIXER_CONF_OPTS += --enable-music-mod-modplug
 SDL_MIXER_DEPENDENCIES += libmodplug
 else
 SDL_MIXER_CONF_OPTS += --disable-music-mod-modplug
-endif
 endif
 
 # prefer tremor over libvorbis
