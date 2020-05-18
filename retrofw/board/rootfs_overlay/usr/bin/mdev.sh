@@ -16,7 +16,7 @@ mdev_umount()
 
 mdev_mount()
 {
-	if [ "$1" == "${root}1" ] || [ "$1" == "${root}2" ] || [ "$1" == "${root}3" ] || grep -q "${mnt}/$1 " /proc/mounts ; then
+	if [ "$1" == "${root}1" ] || [ "$1" == "${root}2" ] || [ "$1" == "${root}3" ] || grep -q "/dev/$1 " /proc/mounts ; then
 		# Already mounted
 		exit 0
 	fi
