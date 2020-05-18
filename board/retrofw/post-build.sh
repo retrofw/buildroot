@@ -22,3 +22,4 @@ ln -sf /tmp "${TARGET}"/run
 ln -sf /etc/issue "${TARGET}"/etc/issue.net
 
 chmod +x "${TARGET}"/etc/init.d/* "${TARGET}"/usr/bin/retrofw
+

@@ -7,7 +7,7 @@ This buildroot can be used to build RetroFW cross-compilation toolchain and the 
 First, clone or download the repo and run:
 
 ~~~bash
-make RetroFW_defconfig BR2_EXTERNAL=retrofw
+make RetroFW_defconfig BR2_EXTERNAL=board/retrofw
 ~~~
 
 You only need to run this once.
