@@ -1,8 +1,11 @@
 # <file system>	<mount pt>	<type>	<options>	<dump>	<pass>
-/dev/root	/		ext3	ro,noauto	0	0
+/dev/root	/		squashfs	ro,noauto	0	0
 proc		/proc		proc	defaults	0	0
 devpts		/dev/pts	devpts	defaults	0	0
 tmpfs		/tmp		tmpfs	mode=1777	0	0
 sysfs		/sys		sysfs	defaults	0	0
+/dev/mmcblk0p2  /home/retrofw   auto rw,noatime,check=r,shortname=lower,utf8=true 0 0
+/dev/mmcblk0p2  /home/retrofw   auto rw,defaults 0 0
 /dev/mmcblk0p2  swap	swap	defaults	0	0
 /dev/mmcblk0p3  /home/retrofw   vfat rw,noatime,check=r,shortname=lower,utf8=true 0 0
+/home/retrofw /root none defaults,bind 0 0

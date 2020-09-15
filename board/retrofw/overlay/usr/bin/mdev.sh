@@ -2,9 +2,10 @@
 
 mnt=/media
 
-root=$(basename $(readlink -f /dev/root | head -c -2))
-ln -sf ${root}3 /dev/home
-ln -sf mmcblk$(( $(readlink -f /dev/root | head -c -3 |  tail -c 1) ^ 1 )) /dev/sdcard
+root=$(cat /proc/cmdline)
+root="${root##*root=}"
+root="${root%% *}"
+root="${root%?}"
 
 mdev_umount()
 {
@@ -16,7 +17,7 @@ mdev_umount()
 
 mdev_mount()
 {
-	if [ "$1" == "${root}1" ] || [ "$1" == "${root}2" ] || [ "$1" == "${root}3" ] || grep -q "/dev/$1 " /proc/mounts ; then
+	if [ "/dev/$1" == "${root}1" ] || [ "/dev/$1" == "${root}2" ] || [ "/dev/$1" == "${root}3" ] || grep -q "/dev/$1 " /proc/mounts ; then
 		# Already mounted
 		exit 0
 	fi

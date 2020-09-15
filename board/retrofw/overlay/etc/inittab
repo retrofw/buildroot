@@ -27,7 +27,7 @@
 # now run any rc scripts
 ::sysinit:/bin/hostname -F /etc/hostname
 ::sysinit:/etc/init.d/rcS
-::sysinit:/sbin/swapon /dev/mmcblk0p2
+::sysinit:/sbin/swapon -a
 
 ::respawn:/usr/sbin/inetd -f
 
