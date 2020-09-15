@@ -1,0 +1,8 @@
+config BR2_PACKAGE_GMENUNX
+        bool "GMenuNX"
+        default y
+        select BR2_PACKAGE_SDL
+        select BR2_PACKAGE_SDL_IMAGE
+        select BR2_PACKAGE_SDL_TTF
+        help
+          https://github.com/retrofw/gmenunx
