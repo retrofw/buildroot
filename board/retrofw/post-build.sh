@@ -1,7 +1,10 @@
 #!/bin/sh
 TARGET=$1
 
-mkdir -p "${TARGET}"/home/retrofw "${TARGET}"/boot
+mkdir -p \
+	"${TARGET}"/home/retrofw \
+	"${TARGET}"/boot \
+#
 
 rm -rf \
 	"${TARGET}"/lost+found \
@@ -13,15 +16,18 @@ rm -rf \
 	"${TARGET}"/var/lib/opkg \
 	"${TARGET}"/run \
 	"${TARGET}"/var/lib/opkg \
-	"${TARGET}"/root
+#
+
+chmod +x \
+	"${TARGET}"/etc/init.d/* \
+	"${TARGET}"/etc/profile.d/* \
+	"${TARGET}"/usr/bin/retrofw \
+	"${TARGET}"/usr/bin/*.sh \
+#
 
 ln -sf /home/retrofw/.opkg "${TARGET}"/var/lib/opkg
-ln -sf /home/retrofw/ "${TARGET}"/root
-
 ln -sf /tmp "${TARGET}"/run
 ln -sf /etc/issue "${TARGET}"/etc/issue.net
-
-chmod +x "${TARGET}"/etc/init.d/* "${TARGET}"/usr/bin/retrofw
 ln -sf /lib/libc.so.0 "${TARGET}"/lib/libpthread.so.0
 ln -sf /lib/libc.so.0 "${TARGET}"/lib/libm.so.0
 ln -sf /lib/libc.so.0 "${TARGET}"/lib/libdl.so.0
