@@ -1,0 +1,28 @@
+From cc82c9aa81159605469b2061f6f95fe5a4396f23 Mon Sep 17 00:00:00 2001
+From: pingflood <pingflood@gmail.com>
+Date: Tue, 3 Nov 2020 12:26:43 -0300
+Subject: [PATCH] fbdev: RetroFW no-GPU check hack
+
+---
+ src/video/fbdev/SDL_fbvideo.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/video/fbdev/SDL_fbvideo.c b/src/video/fbdev/SDL_fbvideo.c
+index a612df2..f8a79d7 100644
+--- a/src/video/fbdev/SDL_fbvideo.c
++++ b/src/video/fbdev/SDL_fbvideo.c
+@@ -17,6 +17,11 @@
+ #include "SDL_fbopengles.h"
+ 
+ static int FB_Available(void) {
++	FILE *file;
++	if ((file = fopen("/proc/jz/gpio", "r"))) {
++		fclose(file);
++		return 0;
++	}
+ 	return 1;
+ }
+ 
+-- 
+2.29.0
+

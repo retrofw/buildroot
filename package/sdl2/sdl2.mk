@@ -139,4 +139,6 @@ else
 SDL2_CONF_OPTS += --disable-video-kmsdrm
 endif
 
+SDL2_CONF_OPTS += --enable-video-fbdev
+
 $(eval $(autotools-package))
