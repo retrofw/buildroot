@@ -1,7 +1,7 @@
 NAME=RetroFW
 ID=retrofw
 VERSION_ID=2.1
-PRETTY_NAME="RetroFW v2.1"
+PRETTY_NAME="RetroFW"
 ANSI_COLOR="0;36"
 HOME_URL="https://retrofw.github.io/"
 BUG_REPORT_URL="https://github.com/retrofw/retrofw.github.io/issues"
