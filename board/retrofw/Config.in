@@ -5,6 +5,7 @@ menu "RetroFW packages"
 	source "$BR2_EXTERNAL_RETROFW_PATH/package/mininit/Config.in"
 	source "$BR2_EXTERNAL_RETROFW_PATH/package/timidity/Config.in"
 	source "$BR2_EXTERNAL_RETROFW_PATH/package/recovery/Config.in"
+	source "$BR2_EXTERNAL_RETROFW_PATH/package/etna_viv/Config.in"
 	source "$BR2_EXTERNAL_RETROFW_PATH/package/mesa3d-etna_viv/Config.in"
 	source "$BR2_EXTERNAL_RETROFW_PATH/package/gmenunx/Config.in"
 endmenu
