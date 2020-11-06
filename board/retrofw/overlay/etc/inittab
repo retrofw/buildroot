@@ -14,13 +14,9 @@
 # process   == program to run
 
 # Startup the system
-::sysinit:/bin/mount -t proc proc /proc
-::sysinit:/bin/mount -t sysfs sysfs /sys
-::sysinit:/bin/mount -t devtmpfs devtmpfs /dev
-::sysinit:/bin/mkdir -p /dev/pts
-::sysinit:/bin/ln -s /tmp /dev/shm
-::sysinit:/bin/mount -t tmpfs tmpfs /media
-::sysinit:/bin/mount -t tmpfs tmpfs /tmp
+::sysinit:/bin/umount -l /dev
+::sysinit:/bin/mount -o size=4k,mode=0755 -t devtmpfs udev /dev
+::sysinit:/bin/mkdir -p /dev/pts /dev/shm
 ::sysinit:/bin/mknod /dev/tcsm c 238 73
 ::sysinit:/bin/mount -a
 

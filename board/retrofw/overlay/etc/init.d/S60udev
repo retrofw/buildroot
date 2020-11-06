@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/sbin/udevadm trigger --action=add /dev/mmcblk* &
+/sbin/udevadm trigger --action=add /dev/sd* &

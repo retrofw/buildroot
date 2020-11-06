@@ -1,0 +1,20 @@
+KERNEL!="mmcblk[0-9]p[0-9]*|sd[a-z][0-9]*", GOTO="end"
+ACTION=="add", PROGRAM!="/sbin/blkid %N", GOTO="end"
+ACTION=="add", PROGRAM=="/bin/grep '/dev/%k' /proc/mounts", RESULT!="", GOTO="end"
+
+IMPORT{program}="/sbin/blkid -o udev -p %N"
+
+ENV{ID_FS_LABEL}!="", ENV{dir_name}="%E{ID_FS_LABEL}"
+ENV{ID_FS_LABEL}=="", ENV{dir_name}="%k"
+
+ACTION=="add", RUN+="/bin/mkdir -p '/media/%E{dir_name}'"
+
+ACTION=="add", ENV{mount_options}="noatime,nodiratime"
+
+ACTION=="add", ENV{ID_FS_TYPE}=="dos|vfat|exfat|ntfs", ENV{mount_options}="$env{mount_options},check=r,shortname=lower,utf8=true,gid=100,dmask=000,fmask=111,utf8"
+
+ACTION=="add", RUN+="/bin/mount -t auto -o %E{mount_options} /dev/%k '/media/%E{dir_name}'"
+
+ACTION=="remove", ENV{dir_name}!="", RUN+="/bin/umount -l '/media/%E{dir_name}'", RUN+="/bin/rmdir '/media/%E{dir_name}'"
+
+LABEL="end"
