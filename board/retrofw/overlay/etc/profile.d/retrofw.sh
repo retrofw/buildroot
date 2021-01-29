@@ -6,5 +6,5 @@ export HOME=/home/retrofw
 
 resize > /dev/null
 umask 022
-mkdir -p $HOME/.opkg
+mkdir -p $HOME/.opkg/info
 alias ls='ls --color'
