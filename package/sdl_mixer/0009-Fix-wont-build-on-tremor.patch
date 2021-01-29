@@ -1,5 +1,5 @@
---- a/configure.in
-+++ a/configure.in
+--- a/configure.ac
++++ a/configure.ac
 @@ -449,7 +449,7 @@
                  echo "-- dynamic libvorbisidec -> $ogg_lib"
                  EXTRA_CFLAGS="$EXTRA_CFLAGS -DOGG_DYNAMIC=\\\"$ogg_lib\\\""
@@ -44,8 +44,8 @@
    ac_check_lib_save_LIBS=$LIBS
 -LIBS="-lvorbisfile -lvorbis -logg -lm $LIBS"
 +LIBS="-lvorbisfile  -logg -lm $LIBS"
- cat >conftest.$ac_ext <<_ACEOF
- /* confdefs.h.  */
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
  _ACEOF
 @@ -14167,7 +14167,7 @@
                  echo "-- dynamic libvorbisfile -> $ogg_lib"
