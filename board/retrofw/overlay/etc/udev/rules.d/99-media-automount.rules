@@ -11,7 +11,9 @@ ACTION=="add", RUN+="/bin/mkdir -p '/media/%E{dir_name}'"
 
 ACTION=="add", ENV{mount_options}="noatime,nodiratime"
 
-ACTION=="add", ENV{ID_FS_TYPE}=="dos|vfat|exfat|ntfs", ENV{mount_options}="$env{mount_options},check=r,shortname=lower,utf8=true,gid=100,dmask=000,fmask=111,utf8"
+ACTION=="add", ENV{ID_FS_TYPE}=="dos|vfat|exfat|ntfs", ENV{mount_options}="$env{mount_options},gid=100,dmask=000,fmask=111,utf8"
+
+ACTION=="add", ENV{ID_FS_TYPE}=="dos|vfat", ENV{mount_options}="$env{mount_options},check=r,shortname=lower"
 
 ACTION=="add", RUN+="/bin/mount -t auto -o %E{mount_options} /dev/%k '/media/%E{dir_name}'"
 
