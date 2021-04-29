@@ -1,5 +1,5 @@
---- a/configure.in
-+++ a/configure.in
+--- a/configure.ac
++++ a/configure.ac
 @@ -449,7 +449,7 @@
                  echo "-- dynamic libvorbisidec -> $ogg_lib"
                  EXTRA_CFLAGS="$EXTRA_CFLAGS -DOGG_DYNAMIC=\\\"$ogg_lib\\\""
